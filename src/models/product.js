@@ -9,10 +9,6 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
-    productOwner: {
-      type: String,
-      required: true,
-    },
     productDescription: {
       type: String,
       trim: true,
@@ -22,9 +18,12 @@ const productSchema = new Schema(
       required: true,
     },
     productCategory: {
-      type: ObjectId,
-      ref: "Category",
-      required: true,
+      type: [String],
+    },
+    productStar: {
+      type: [Number],
+      max: 10,
+      min: 1,
     },
     productColour: {
       type: String,
@@ -33,7 +32,7 @@ const productSchema = new Schema(
     productRequest: {
       type: String,
       enum: ["Available", "Non-available"],
-      required: true,
+      default: "Available",
     },
     productType: {
       type: String,
@@ -42,9 +41,9 @@ const productSchema = new Schema(
     productMessage: {
       type: String,
     },
-    productStar: {
-      type: Number,
-      required: true,
+    sellerId: {
+      type: ObjectId,
+      ref: "Seller",
     },
     cloudinaryId: {
       type: String,
