@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 const cloudinary = require("../utils/cloudinary");
 
-const Product = require("../models/product");
+const Product = require("../models/Product");
 const Seller = require("../models/Seller");
 
 /**
