@@ -1,14 +1,17 @@
 /* eslint-disable no-underscore-dangle */
 const cloudinary = require("../utils/cloudinary");
 
-const Product = require("../models/Product");
+const Product = require("../models/product");
 const Seller = require("../models/Seller");
+const User = require("../models/User");
 
 /**
  * @method POST
  * @desc creates product
  */
 exports.create = async (req, res) => {
+  const userRole = await User.findOne({ email: req.user.email });
+  if (!userRole.role.includes("Designer")) return res.status(401).json({ message: "Unauthorized" });
   const {
     productName,
     productDescription,
@@ -20,7 +23,6 @@ exports.create = async (req, res) => {
     productStar,
     productSize,
   } = req.body;
-
   try {
     const result = await cloudinary.uploader.upload(req.file.path);
     const product = new Product({
@@ -86,7 +88,7 @@ exports.readProduct = async (req, res) => {
  * @method DELETE
  * @desc deletes product
  */
-exports.delete = async (req, res) => {
+exports.deleteProduct = async (req, res) => {
   try {
     const { productId } = req.params;
 
