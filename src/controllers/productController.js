@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 const cloudinary = require("../utils/cloudinary");
 
-const Product = require("../models/Product");
+const Product = require("../models/product");
 const Seller = require("../models/Seller");
 
 /**
@@ -9,7 +9,6 @@ const Seller = require("../models/Seller");
  * @desc creates product
  */
 exports.create = async (req, res) => {
-  console.log(req.user);
   const {
     productName,
     productDescription,
@@ -109,7 +108,6 @@ exports.delete = async (req, res) => {
  */
 exports.update = async (req, res) => {
   const { productId } = req.params;
-  console.log(productId);
   const {
     productName,
     productDescription,
@@ -140,10 +138,8 @@ exports.update = async (req, res) => {
       cloudinaryId: result.public_id,
       cloudinaryUrl: result.secure_url,
     };
-    console.log(product);
     await Product.updateOne(product, newProduct, (err, data) => {
       if (err) return res.status(403).json({ err });
-
     });
     res.status(200).json({ message: "Product successfully updated" });
   } catch (err) {

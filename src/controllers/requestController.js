@@ -9,7 +9,7 @@ const User = require("../models/User");
 
 const cloudinary = require("../utils/cloudinary");
 
- const mg = mailgun({ apiKey: MAILGUN_APIKEY, domain: DOMAIN });
+const mg = mailgun({ apiKey: MAILGUN_APIKEY, domain: DOMAIN });
 
 /**
  * @method POST
