@@ -112,5 +112,7 @@ exports.getRequest = async (req, res) => {
     const { id } = req.params;
     const retrieveRequest = await Request.findById({ _id: id });
     if (!retrieveRequest) return res.status(404).json({ error: "Request not found" });
-  } catch (error) {}
+  } catch (error) {
+    return res.status(500).json({ error: "Server error" });
+  }
 };

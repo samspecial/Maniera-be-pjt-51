@@ -3,7 +3,6 @@ const cloudinary = require("../utils/cloudinary");
 
 const Product = require("../models/product");
 const Seller = require("../models/Seller");
-const User = require("../models/User");
 
 /**
  * @method POST
